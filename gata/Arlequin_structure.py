@@ -27,7 +27,7 @@ import gata.tools as tl
 
 class Arlequin(object):
 
-	""" Arlequin structure. It returns men and women format for Arlequin."""
+	""" Arlequin structure. It returns men and women in Arlequin format."""
 
 	def __init__(self, Data):
 
@@ -44,18 +44,18 @@ class Arlequin(object):
 		
 		self.women = []
 		self.men = []
-		self.onlymenfile = [] # this array will be to renumber the popname for the men output file 
+		self.onlymenfile = [] # this array will be used to renumber the popname for the men output file 
 
 		# Define Arlequin markers type
 		self.marker_mod = []
-		# The first two columns are indivudual number (reset for each subpopulation) and population number, then markers
+		# The first two columns are individual number (reset for each subpopulation) and population number; next are markers
 		self.marker_mod.append(str('IND'))
 		self.marker_mod.append(str('POP'))
 
 		for each in Data.markers:
 			self.marker_mod.append(str(each).strip())
 
-		# self.header is only for safer programming, but it will not be in the output file
+		# self.header is only for safer programming, but it will not be written in the output file
 		self.header = ''
 		for i in self.marker_mod:
 			self.header = self.header + '{:7s}\t'.format(i)
@@ -70,8 +70,6 @@ class Arlequin(object):
 			self.onlymenfile.append(newaux)
 			self.onlymenfile[i] = tl.SingleMenTable(self.onlymenfile[i])
 
-		#for ie in self.men:
-		#	print(ie)
 		self.data = []
 		for i in range(len(self.women)):
 			self.data.append(np.concatenate((self.women[i], self.men[i]), axis = 0) ) 
@@ -109,22 +107,20 @@ class Arlequin(object):
 		"""
 
 		In this structure, women keep the same format. 
-		This method works over one population. __init__() interprets all.
+		This method works over one population. __init__() interprets for all.
 		
 		Parameters (used from Data):
 		---------
-		
 			ColSexType: column with the 1 or 2 (man or woman)
 			ColPopNum: column with number of population
 			ColIndNum: column with number of each individual
 			ColMarkBegin: column where markers start
-			ARLQINDEX: 1 , same kind of sex for Arlequin
-			MARKER: -9 for missing data
-			m4subpop: number of mens in the subpop. With this number we complete zfill(Fill)
+			ARLQINDEX: 1, same kind of sex for Arlequin
+			MARKER: -9 for missing data (can be changed in readtable.py)
+			m4subpop: number of men in the subpop. With this number we complete zfill(Fill)
 
 		Return: 
 		---------
-		
 			markersWom_forArlq: Markers for women population 
 			markersMen_forArlq: Markers for men population
 

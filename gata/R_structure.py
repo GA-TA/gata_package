@@ -146,7 +146,7 @@ class R(object):
 		if len(population_m)%2 == 0:
 			pass
 		elif len(population_m)%2 == 1:
-			# Missing data is set to -9 (can be changed if needed)
+			# Missing data is set to -9 (can be changed if needed; check readtable.py)
 			population_m.append([-9 for x in range(np.shape(population_m)[1])])
 
 		markersMen_forR = np.empty((len(population_m)//2,len(self.marker_mod)), dtype = np.int8)

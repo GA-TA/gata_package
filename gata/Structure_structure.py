@@ -6,7 +6,7 @@ $auth(alphabetical order): del Palacio, S.; Di Santo, P.; Gamboa Lerena, M. M.
 $license: GPLv3 or later, see https://www.gnu.org/licenses/gpl-3.0.txt
 
           This is free software: you are free to change and
-          redistribute it.  There is NO WARRANTY, to the extent
+          redistribute it.  There is NO WARRANTY, to the extent 
           permitted by law.
 
 Contact: unlpbiotec@gmail.com
@@ -52,7 +52,7 @@ class Structure():
 		for each in Data.markers:
 			self.marker_mod.append(str(each).strip())
 
-		# self.header is only for safer programming, but it will not be in output file
+		# self.header is only for safer programming, but it will not be written in the output file
 		self.header = ''
 		for i in self.marker_mod:
 			self.header = self.header + '{:7s}\t'.format(i)
@@ -98,9 +98,9 @@ class Structure():
 
 		"""
 
-		In this structure, women keep the same shape. Men are fake women with a -9 row and add a third row for each individual 
-		with a weight (0.5 for women 1.0 for men) 
-		This method work over one populations. __init__() interprets works with all.
+		In this structure, women keep the same shape whereas men are converted into fake women with a -9 row. 
+		A third row is added for each individual using a given weight (0.5 for women 1.0 for men) 
+		This method works over one population. __init__() interprets to work with all.
 
 		Parameters:
 		------------

@@ -26,13 +26,14 @@ import unidecode as ucd
 def SingleMenTable(popname):
 
 	"""
-	This method will change the number in PopName in the output mens table.
+	This method changes the number in PopName in the output men table.
 	Parameter:
 	----------
 	popname: array with the population name (the number)
+
 	Return:
 	----------
-	popname: array with the population name number reseted (from 1, 01, 001, etc.. depends the number of digits)
+	popname: array with the population name number reset (from 1, 01, 001, etc.. depends on the number of digits)
 
 	"""
 
