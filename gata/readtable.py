@@ -23,7 +23,8 @@ Latest upload: July 2019
 import numpy as np
 import pandas as pd
 import os
-import sys 
+import sys
+import warnings 
 
 class Data():
 	
@@ -63,29 +64,30 @@ class Data():
 		
 		self.file = inputTable
 
-		# Convert .ods to .xlsx if needed
-		if self.file.split('.')[-1] == 'ods':
-			os.system('ssconvert '+ self.file + ' '+ self.file.split('.')[0]+'.xlsx')
-			self.file = self.file.split('.')[0]+'.xlsx'
-		
+		#else:
+		#	raise ValueError("No extension file specified. Yo need to do it.")		
 		# Load file parameters
 		self.Parameters()		
+
+		# Convert .ods to .xlsx if needed
+		if self.file.split('.')[-1] == 'ods':
+			df = pd.read_excel(self.file, sheet_name=0, engine = "odf")
+		else:
+			df = pd.read_excel(self.file, sheet_name=0)
 		
-		allFile = pd.ExcelFile(self.file)
-
-		# Only one sheet admited  
-		if len(allFile.sheet_names) > 1: 
-			raise ValueError('The program does not support more than 1 sheet')
-		elif len(allFile.sheet_names) == 1: 
-			sheet0 = allFile.sheet_names[0]
-
-		# Read THE sheet and create a sheetData atribute with all the info of the file
-		self.sheetData = allFile.parse(sheet0)
+		if df.empty: 
+			raise ValueError("The file is empty.")
+		
+		if df.isnull().values.any():
+			warnings.warn("The file has missing values. They were replaced by {} values".format(self.MARKER))
+			df.fillna(value=self.MARKER, inplace=True)
+		
 		# create column name and column values 
-		self.nameColumn, self.fileValues = self.sortData()
+		self.nameColumn, self.fileValues = df.keys(), df.values
 		self.n_women, self.n_men, self.total_MenWomen = self.WoMen() 	
 		self.men4subpop, self.women4subpop, self.n_each_population, self.totalPopulations,self.populations = self.Populations()
 		self.n_markers, self.markers = self.Markers()
+
 
 	def Parameters(self):
 			
@@ -132,24 +134,6 @@ class Data():
 
 		self.outputExtensionFile = '.xlsx'
 
-	def sortData(self):
-
-		"""
-		return: 
-		----------
-		columnName, columnValues
-		"""
-
-		columnName=[]
-		for each in self.sheetData.columns:
-			columnName.append(each)
-		columnValues = []
-		for each in self.sheetData.values:
-			columnValues.append(each)
-
-		return np.array(columnName), np.array(columnValues)
-
-	
 	def WoMen(self):
 
 		"""
