@@ -1,5 +1,4 @@
 *.pyc
 dist
 build
-__init__.py
 *egg-info
