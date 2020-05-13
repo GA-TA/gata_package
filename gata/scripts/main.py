@@ -20,7 +20,7 @@ from gata.readtable import Data
 from gata.R_structure import R
 from gata.Arlequin_structure import Arlequin
 from gata.Structure_structure import Structure
-from logmod import *
+from gata.logmod import set_log
 #set debug level
 #logger = logging.getLogger(__name__)
 #logger.setLevel(logging.DEBUG)
