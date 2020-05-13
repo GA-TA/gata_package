@@ -42,7 +42,6 @@ def SingleMenTable(popname):
 	# Number of digits
 	digits = len(str(ndim))
 
-	print(digits)
 	count = 1
 
 	for i in np.arange(0,len(namecol)):
