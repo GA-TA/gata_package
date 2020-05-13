@@ -25,7 +25,7 @@ import pandas as pd
 import os
 import sys
 import warnings 
-from logmod import *
+from gata.logmod import *
 
 class Data():
 	
