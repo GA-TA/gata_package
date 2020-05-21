@@ -6,7 +6,7 @@ $auth(alphabetical order): del Palacio, S.; Di Santo, P.; Gamboa Lerena, M. M.
 $license: GPLv3 or later, see https://www.gnu.org/licenses/gpl-3.0.txt
 
           This is free software: you are free to change and
-          redistribute it.  There is NO WARRANTY, to the extent
+          redistribute it. There is NO WARRANTY, to the extent
           permitted by law.
 
 Contact: unlpbiotec@gmail.com
@@ -33,14 +33,15 @@ class Data():
 		
 		"""
 		Input:
-		----------
-			. inputTable = data file name. 	
-				Rows: 1 = column infomation, 2 to last = individuals, 
-				Cols: 1 = population name, 2 = individual number, 3 = sex (1 = M, 2 = F), 4 = population number, 5 to last=markers 
-
+		----------			
+			. inputTable = data file name.
+				Expected format: 	
+				Rows: 1 = column infomation; 2 to last = individuals
+				Cols: 1 = population name; 2 = individual number; 3 = sex (1 = M, 2 = F); 
+					4 = population number; 5 to last = markers 
 		Return:
 		----------
-			A set of atributes.
+			A set of attributes.
 
 			. nameColumn: column names. Type = numpy.array (strings) with shape = (4 + number of markers)  
 			. fileValues: array with all the values (id, sex, pop and markers)
@@ -89,7 +90,7 @@ class Data():
 		
 		# create column name and column values 
 		self.nameColumn, self.fileValues = df.keys(), df.values
-		self.n_women, self.n_men, self.total_MenWomen = self.WoMen() 	
+		self.n_women, self.n_men, self.total_MenWomen = self.Women() 	
 		self.men4subpop, self.women4subpop, self.n_each_population, self.totalPopulations,self.populations = self.Populations()
 		self.n_markers, self.markers = self.Markers()
 
@@ -126,20 +127,20 @@ class Data():
 		self.ColSexType = 2
 		self.ColPopNum = 3
 		self.ColMarkBegin = 4
+		self.MARKER = -9	# Missing data are replaced with this value
 
-		self.outputNameR = self.file.split('/')[-1].split('.')[0] + '_R'
+		self.outputNameR = self.file.split('.')[0] + '_R'
 	
-		self.ARLQINDEX = 1 #same type of sex for Arlequin
-		self.MARKER = -9
-		self.outputNameArlq = self.file.split('/')[-1].split('.')[0] + '_Arlequin'
+		self.ARLQINDEX = 1 	#same sex type for Arlequin
+		self.outputNameArlq = self.file.split('.')[0] + '_Arlequin'
 
 		self.STRWom = 0.5
 		self.STRMen = 1.0
-		self.outputNameStr = self.file.split('/')[-1].split('.')[0] + '_Structure'
+		self.outputNameStr = self.file.split('.')[0] + '_Structure'
 
 		self.outputExtensionFile = '.xlsx'
 
-	def WoMen(self):
+	def Women(self):
 
 		"""
 		ColSexType  == column with the 1 or 2 (man or woman)

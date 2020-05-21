@@ -6,7 +6,7 @@ $auth(alphabetical order): del Palacio, S.; Di Santo, P.; Gamboa Lerena, M. M.
 $license: GPLv3 or later, see https://www.gnu.org/licenses/gpl-3.0.txt
 
           This is free software: you are free to change and
-          redistribute it.  There is NO WARRANTY, to the extent
+          redistribute it. There is NO WARRANTY, to the extent
           permitted by law.
 
 Contact: unlpbiotec@gmail.com
@@ -44,18 +44,18 @@ class Arlequin(object):
 		
 		self.women = []
 		self.men = []
-		self.onlymenfile = [] # this array will be to renumber the popname for the men output file 
+		self.onlymenfile = [] # this array will be used to renumber the popname for the men output file 
 
 		# Define Arlequin markers type
 		self.marker_mod = []
-		# The first two columns are indivudual number (reset for each subpopulation) and population number, then markers
+		# The first two columns are individual number (reset for each subpopulation) and population number, next are markers
 		self.marker_mod.append(str('IND'))
 		self.marker_mod.append(str('POP'))
 
 		for each in Data.markers:
 			self.marker_mod.append(str(each).strip())
 
-		# self.header is only for safer programming, but it will not be in the output file
+		# self.header is only for safer programming, but it will not be written in the output file
 		self.header = ''
 		for i in self.marker_mod:
 			self.header = self.header + '{:7s}\t'.format(i)
@@ -109,7 +109,7 @@ class Arlequin(object):
 		"""
 
 		In this structure, women keep the same format. 
-		This method works over one population. __init__() interprets all.
+		This method works over one population. __init__() interprets for all.
 		
 		Parameters (used from Data):
 		---------
@@ -118,9 +118,9 @@ class Arlequin(object):
 			ColPopNum: column with number of population
 			ColIndNum: column with number of each individual
 			ColMarkBegin: column where markers start
-			ARLQINDEX: 1 , same kind of sex for Arlequin
-			MARKER: -9 for missing data
-			m4subpop: number of mens in the subpop. With this number we complete zfill(Fill)
+			ARLQINDEX: 1, same kind of sex for Arlequin
+			MARKER: -9 for missing data (can be changed in readtable.py)
+			m4subpop: number of men in the subpop. With this number we complete zfill(Fill)
 
 		Return: 
 		---------

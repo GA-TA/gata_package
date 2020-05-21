@@ -6,7 +6,7 @@ $auth(alphabetical order): del Palacio, S.; Di Santo, P.; Gamboa Lerena, M. M.
 $license: GPLv3 or later, see https://www.gnu.org/licenses/gpl-3.0.txt
 
           This is free software: you are free to change and
-          redistribute it.  There is NO WARRANTY, to the extent
+          redistribute it. There is NO WARRANTY, to the extent
           permitted by law.
 
 Contact: unlpbiotec@gmail.com
@@ -26,13 +26,13 @@ import unidecode as ucd
 def SingleMenTable(popname):
 
 	"""
-	This method will change the number in PopName in the output mens table.
+	This method changes the number in PopName in the output men table.
 	Parameter:
 	----------
 	popname: array with the population name (the number)
 	Return:
 	----------
-	popname: array with the population name number reseted (from 1, 01, 001, etc.. depends the number of digits)
+	popname: array with the population name number reset (from 1, 01, 001, etc.. depends on the number of digits)
 
 	"""
 

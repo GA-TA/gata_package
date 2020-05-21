@@ -6,7 +6,7 @@ $auth(alphabetical order): del Palacio, S.; Di Santo, P.; Gamboa Lerena, M. M.
 $license: GPLv3 or later, see https://www.gnu.org/licenses/gpl-3.0.txt
 
           This is free software: you are free to change and
-          redistribute it.  There is NO WARRANTY, to the extent
+          redistribute it. There is NO WARRANTY, to the extent
           permitted by law.
 
 Contact: unlpbiotec@gmail.com
@@ -146,7 +146,7 @@ class R(object):
 		if len(population_m)%2 == 0:
 			pass
 		elif len(population_m)%2 == 1:
-			# Missing data is set to -9 (can be changed if needed)
+			# Missing data is set to -9 (can be changed if needed; check readtable.py))
 			population_m.append([-9 for x in range(np.shape(population_m)[1])])
 
 		markersMen_forR = np.empty((len(population_m)//2,len(self.marker_mod)), dtype = np.int8)
