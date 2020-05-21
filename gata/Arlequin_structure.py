@@ -27,7 +27,7 @@ import gata.tools as tl
 
 class Arlequin(object):
 
-	""" Arlequin structure. It returns men and women format for Arlequin."""
+	""" Arlequin structure. It returns men and women in Arlequin format."""
 
 	def __init__(self, Data):
 
