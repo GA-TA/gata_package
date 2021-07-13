@@ -24,12 +24,16 @@ import numpy as np
 import pandas as pd
 import os
 from gata.readtable import Data as Drt
+from gata.logmod import set_log
 
 class R(object):
 
 	""" R structure. It returns men and women format for R."""
 
 	def __init__(self, Data):
+
+		logger = set_log(__name__)
+		logger.info('Starting conversion into {}'.format(__name__))
 
 		if not isinstance(Data,Drt):
 			raise ValueError("The file has not {} format. Call gata.readtable.Data('{}')".format(Drt.__module__, Data))
@@ -74,6 +78,7 @@ class R(object):
 		self.women = np.concatenate(self.women, axis = 0)
 
 		#Save data to a file
+		logger.info('Finished.')
 		self.Output(Data)
 
 	def Output(self, Data):
