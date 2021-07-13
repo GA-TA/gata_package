@@ -22,6 +22,7 @@ Latest upload: July 2019
 import numpy as np
 import pandas as pd
 from gata.readtable import Data as Drt
+from gata.logmod import set_log
 
 class Structure():
 
@@ -30,6 +31,9 @@ class Structure():
 	"""
 
 	def __init__(self, Data):
+		
+		logger = set_log(__name__)
+		logger.info('Starting conversion into {}'.format(__name__))
 
 		if not isinstance(Data,Drt):
 			raise ValueError("The file has not {} format. Call gata.readtable.Data('{}') \
@@ -72,6 +76,7 @@ class Structure():
 
 		self.women = np.concatenate(self.women, axis = 0)
 
+		logger.info('Finished.')
 		#Save data to a file
 		self.Output(Data)
 
