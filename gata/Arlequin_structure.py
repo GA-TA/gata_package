@@ -24,13 +24,17 @@ import numpy as np
 import pandas as pd
 from gata.readtable import Data as Drt
 import gata.tools as tl
+from gata.logmod import set_log
 
 class Arlequin(object):
 
 	""" Arlequin structure. It returns men and women in Arlequin format."""
 
 	def __init__(self, Data):
-
+		
+		logger = set_log(__name__)
+		logger.info('Starting conversion into {}'.format(__name__))
+		
 		if not isinstance(Data,Drt):
 			raise ValueError("The file has not {} format. Call gata.readtable.Data('{}') \
 				".format(Drt.__module__, Data))
@@ -41,7 +45,7 @@ class Arlequin(object):
 		# Take subpopulation 1:
 		subpop1_w = Data.women4subpop
 		subpop1_m = Data.men4subpop
-		
+
 		self.women = []
 		self.men = []
 		self.onlymenfile = [] # this array will be used to renumber the popname for the men output file 
@@ -83,7 +87,11 @@ class Arlequin(object):
 		self.women = np.concatenate(self.women, axis = 0)
 
 		self.onlymenfile = np.concatenate(self.onlymenfile, axis = 0)
+		
+		logger.info('Finished.')
+
 		# Save data to a file
+
 		self.Output(Data)
 
 	def Output(self, Data):
