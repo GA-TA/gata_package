@@ -73,11 +73,18 @@ class Data():
 		# Load file parameters
 		self.Parameters()		
 
-		# Convert .ods to .xlsx if needed
-		if self.file.split('.')[-1] == 'ods':
+		# Check the file type according to its extension
+		if self.file.endswith('.ods'):
+			# Convert .ods to .xlsx if needed 
 			df = pd.read_excel(self.file, sheet_name=0, engine = "odf")
-		else:
+		elif self.file.endswith('.xlsx'):
 			df = pd.read_excel(self.file, sheet_name=0)
+		elif self.file.endswith('.csv'):
+			df = pd.read_csv(self.file)
+		else:
+			# ADD LOG ERROR HERE
+			raise ValueError("The file is in an unsupported format. Convert file to .ods, .csv or .xlsx.")
+
 		
 		if df.empty: 
 			# ADD LOG ERROR HERE

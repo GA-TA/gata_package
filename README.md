@@ -1,20 +1,20 @@
 # GA-TA 
 
 ## Introduction
-**GA-TA**  program is used to convert an easy-to-build generic table into more complex tables in the specific format required to use with Structure, Arlequin, and R softwares. GA-TA is applicable to autosomic, mitochondrial and X chromosome data. The program is written in Python under an open source policy, allowing experienced users to download the program from the github repository (https://github.com/santimda/GA-TA) and adapt it by adding new modules upon convenience.
+**GA-TA**  program converts an easy-to-build generic table into more complex tables in the specific format required by commonly-used softwares in genetics (namely _Structure_, _Arlequin_, and _R_ softwares). GA-TA is applicable to autosomic, X chrosome and Y chromosome data. The program is written entirely in Python3 under an open source policy, allowing experienced users to download the program from the github repository (https://github.com/GA-TA/gata_package) and adapt it by adding new modules upon convenience.
 
 ## Running online
  A stable version of the program can be executed on a friendly user environment on this [GA-TA website](http://gata.fcaglp.unlp.edu.ar/).
 
 ## Running on terminal
 
-**GA-TA** is a Python module. You can install in your local environment doing:
+**GA-TA** is a Python3 module. You can install it in your local environment by downloading the github repository and running in a terminal:
    
    >$ python setup.py install
 
-and you can enjoy GA-TA as Python3 module. You have a pipeline called main.py as an example of how to wrok with it.
+From now on you can enjoy GA-TA as a Python module. 
 
-To execute the example from the command line, run:
+You have a pipeline called _main.py_ as an example of how to work with it. To execute the example from the command line, run:
    >$ python main.py [OPTIONS] <spreadsheet_name>  
 
 ## Installation with conda environment for Python 3.X:
@@ -45,4 +45,4 @@ will return output files for Structure.
 
 ## Considerations 
 
-All columns with information must have a name (e.g., there cannot be a blank cell in the first row for any column with information). An example sheet along with a more detailed manual can be downloaded from the [GA-TA website](http://gata.fcaglp.unlp.edu.ar/), and they are also available in the folder 'Documentation'.
+All columns with information must have a name (e.g., there cannot be a blank cell in the first row for any column with information). An example sheet along with a more detailed manual are available in the folder 'Documentation' (these can also be downloaded from the [GA-TA website](http://gata.fcaglp.unlp.edu.ar/)).
